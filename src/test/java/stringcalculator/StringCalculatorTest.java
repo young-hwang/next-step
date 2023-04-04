@@ -1,5 +1,6 @@
-package _02_string_calculator;
+package stringcalculator;
 
+import ch02.stringcalculator.StringCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
