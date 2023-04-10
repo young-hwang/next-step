@@ -20,10 +20,7 @@ public class RequestHandler extends Thread {
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String line = br.readLine();
             if (line == null) { return; }
-            while(!"".equals(line)) {
-                System.out.println(line);
-                line = br.readLine();
-            }
+            String url = Util.getUrl(line);
             DataOutputStream dos = new DataOutputStream(out);
             byte[] body = "Hello World".getBytes();
             response200Header(dos, body.length);
