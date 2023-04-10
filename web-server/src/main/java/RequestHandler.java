@@ -3,6 +3,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 
 public class RequestHandler extends Thread {
     private static final Logger log = LoggerFactory.getLogger(RequestHandler.class);
@@ -19,14 +20,25 @@ public class RequestHandler extends Thread {
              OutputStream out = connection.getOutputStream()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String line = br.readLine();
-            if (line == null) { return; }
+            if (line == null) {
+                return;
+            }
             String url = Util.getUrl(line);
             DataOutputStream dos = new DataOutputStream(out);
-            byte[] body = "Hello World".getBytes();
+            byte[] body = readFile(url);
             response200Header(dos, body.length);
             responseBody(dos, body);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private byte[] readFile(String url) {
+        try {
+            return Files.readAllBytes(new File("./webapp" + url).toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new byte[0];
         }
     }
 

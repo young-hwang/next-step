@@ -23,8 +23,8 @@ Accept: */*
 
 # 3단계
 
-- 요청 URL에 해당하는 파일을 webapp 디렉토리에서 읽어 전달한다.
-- 구글에서 "java files readallbytes"로 검색해 파일 데이터를 byte[]로 읽는다.
+- ~~요청 URL에 해당하는 파일을 webapp 디렉토리에서 읽어 전달한다.~~
+- ~~구글에서 "java files readallbytes"로 검색해 파일 데이터를 byte[]로 읽는다.~~
 
 ```java
 byte[] body = Files.readAllBytes(new File("./webapp" + url).toPath());
